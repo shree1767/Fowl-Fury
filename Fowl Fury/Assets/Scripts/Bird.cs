@@ -1,10 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
 {
-  [SerializeField] float _launchForce = 600;
+    [SerializeField] float _launchForce = 600;
 
     Vector2 _startPosition;
     Rigidbody2D _rigidbody2D;
@@ -51,5 +53,4 @@ public class Bird : MonoBehaviour
         _rigidbody2D.isKinematic = true;
         _rigidbody2D.velocity = Vector2.zero;
     }
-
 }
