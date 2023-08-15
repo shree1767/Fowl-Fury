@@ -9,6 +9,9 @@ public class LevelController : MonoBehaviour
 
     Monster[] _monsters;
 
+    public Animator _transition;
+    public float transitionTime = 1f;
+
     void OnEnable()
     {
         _monsters = FindObjectsOfType<Monster>();
@@ -38,7 +41,16 @@ public class LevelController : MonoBehaviour
 
     void GoToNextLevel()
     {
-        Debug.Log("Go to level " + _nextLevelName);
-        SceneManager.LoadScene(_nextLevelName);
+        StartCoroutine(LoadLevel(_nextLevelName));
+    }
+
+    IEnumerator LoadLevel(string nextLevelName)
+    {
+        // Play animation
+        _transition.SetTrigger("Start");
+        // Wait
+        yield return new WaitForSeconds(transitionTime);
+        // Load scene
+        SceneManager.LoadScene(nextLevelName);
     }
 }
